@@ -1,7 +1,5 @@
 package kodlama.io.kodlama.io.Devs.entities.concretes;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +7,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,12 +17,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(name="languages")
+@Table(name="frameworks")
 @Data //getter and setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class ProgrammingLanguage {
+public class Framework {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
@@ -31,10 +30,9 @@ public class ProgrammingLanguage {
 	
 	@Column(name="name")
 	private String name;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "language", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-	private List<Framework> frameworks;
 	
-
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinColumn(name ="language")
+	@JsonIgnore
+	private ProgrammingLanguage language;
 }
