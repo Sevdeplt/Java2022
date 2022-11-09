@@ -27,7 +27,7 @@ public class ProgrammingLanguagesController {
 		this.programmingLanguageService = programmingLanguageService;
 	}
 
-	@GetMapping("/getall")
+	@GetMapping
 	public List<GetAllProgrammingLanguagesResponse> getAll() {
 		return programmingLanguageService.getAll();
 	}
@@ -38,8 +38,8 @@ public class ProgrammingLanguagesController {
 	}
 
 	@PostMapping("/add")
-	public void add(CreateProgrammingLanguageRequest createProgrammingLanguageRequest) throws Exception{
-		this.programmingLanguageService.add(createProgrammingLanguageRequest);
+	public void add(@RequestBody CreateProgrammingLanguageRequest request) throws Exception{
+		this.programmingLanguageService.add(request);
 	}
 
 	@DeleteMapping("/{id}")
@@ -47,8 +47,8 @@ public class ProgrammingLanguagesController {
 		programmingLanguageService.delete(id);
 	}
 
-	@PutMapping("/update")
-	public void update(@RequestBody ProgrammingLanguage language) {
-		programmingLanguageService.update(language);
+	@PutMapping("/update/{id}")
+	public void update(@PathVariable int id, @RequestBody CreateProgrammingLanguageRequest request) {
+		programmingLanguageService.update(id, request);
 	}
 }

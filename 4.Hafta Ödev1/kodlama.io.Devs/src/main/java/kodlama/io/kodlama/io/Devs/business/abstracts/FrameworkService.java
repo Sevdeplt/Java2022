@@ -8,13 +8,14 @@ import kodlama.io.kodlama.io.Devs.entities.concretes.Framework;
 
 public interface FrameworkService {
 	public List<GetAllFrameworksResponse> getAll();
+	
 	public Framework getById(int id);
 
 	public void add(CreateFrameworkRequest createFrameworkRequest) throws Exception;
 
 	public void delete(int id);
 
-	public void update(Framework framework);
+	public void update(int id, CreateFrameworkRequest createFrameworkRequest);
 
 
 }

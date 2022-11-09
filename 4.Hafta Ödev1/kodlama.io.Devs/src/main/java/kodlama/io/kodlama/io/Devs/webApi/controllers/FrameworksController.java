@@ -27,7 +27,7 @@ public class FrameworksController {
 		this.frameworkService = frameworkService;
 	}
 
-	@GetMapping("/getall")
+	@GetMapping
 	public List<GetAllFrameworksResponse> getAll(){
 		return frameworkService.getAll();
 	}
@@ -38,7 +38,7 @@ public class FrameworksController {
 	}
 
 	@PostMapping("/add")
-	public void add(CreateFrameworkRequest createFrameworkRequest) throws Exception{
+	public void add(@RequestBody CreateFrameworkRequest createFrameworkRequest) throws Exception{
 		this.frameworkService.add(createFrameworkRequest);
 	}
 
@@ -47,9 +47,9 @@ public class FrameworksController {
 		frameworkService.delete(id);
 	}
 
-	@PutMapping("/update")
-	public void update(@RequestBody Framework framework) {
-		frameworkService.update(framework);
+	@PutMapping("/update/{id}")
+	public void update(@PathVariable int id, @RequestBody CreateFrameworkRequest createFrameworkRequest) {
+		frameworkService.update(id, createFrameworkRequest);
 	}
 	
 	

@@ -15,5 +15,5 @@ public interface ProgrammingLanguageService {
 
 	public void delete(int id);
 
-	public void update(ProgrammingLanguage language);
+	public void update(int id, CreateProgrammingLanguageRequest request);
 }
